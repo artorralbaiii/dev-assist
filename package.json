@@ -1,0 +1,19 @@
+{
+  "name": "dev-assist",
+  "version": "1.0.0",
+  "description": "Developer Assistant",
+  "main": "./src/server/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node ./src/server/app.js",
+    "deploy": "gcloud app deploy"
+  },
+  "author": "a.r.torralba.iii@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.3",
+    "mysql": "^2.15.0",
+    "underscore": "^1.9.1"
+  }
+}
