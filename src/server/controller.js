@@ -1,6 +1,6 @@
 'use strict';
 
-var db = require('./dbconnection');
+var knex = require('./dbconnection');
 var _ = require('underscore');
 
 module.exports = function () {
@@ -15,17 +15,22 @@ module.exports = function () {
     // Implementations
 
     function customerList(req, res) {
-        var sSQL = 'SELECT * FROM customer_info';
-        db.query(sSQL, function (err, rows, fields) {
-            if (err) {
+        knex.select('Name', 'Balance', 'Product')
+            .from('customer_info')
+            .then(function (results) {
                 res.json({
-                    success: false,
-                    message: err.message
+                    data: results,
+                    success: true,
+                    message: 'Query Success!'
                 });
-            } else {
-                res.json(rows);
-            }
-        });
+            }).catch(function (err) {
+                console.log(err.stack);
+                res.json({
+                    data: null,
+                    success: false,
+                    message: err.stack
+                });
+            })
     }
 
     function whCustomerList(req, res) {
